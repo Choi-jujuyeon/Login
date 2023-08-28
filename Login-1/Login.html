@@ -8,9 +8,9 @@
     <body>
         <form>
             <h1>회원가입</h1>
-            <div>email : <input type="email" /></div>
-            <div>password : <input type="email" /></div>
-            <button type="submit">회원가입하기</button>
+            <div>email : <input type="email" id="signUpEmail" /></div>
+            <div>password : <input type="password" id="signUpPassword" /></div>
+            <button type="submit" id="signUpButton">회원가입하기</button>
             <button>로그인 하러 가기</button>
         </form>
         <script type="module">
@@ -35,6 +35,36 @@
             // Initialize Firebase
             const app = initializeApp(firebaseConfig);
             const analytics = getAnalytics(app);
+
+            //비밀번호 기반 계정 만들기
+            import {
+                getAuth,
+                createUserWithEmailAndPassword,
+            } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-auth.js";
+
+            document
+                .getElementById("signUpButton")
+                .addEventListener("click", (event) => {
+                    event.preventDefault();
+                    const email = document.getElementById("signUpEmail").value;
+                    const password =
+                        document.getElementById("signUpPassword").value;
+
+                    const auth = getAuth();
+                    createUserWithEmailAndPassword(auth, email, password)
+                        .then((userCredential) => {
+                            console.log(userCredential);
+                            // Signed in
+                            const user = userCredential.user;
+                            // ...
+                        })
+                        .catch((error) => {
+                            console.log("error");
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                            // ..
+                        });
+                });
         </script>
     </body>
 </html>
