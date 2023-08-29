@@ -1,4 +1,5 @@
 import EmailLogin from "./components/EmailLogin";
+import GoogleLogin from "./components/GooglLogin";
 import Login from "./components/Login";
 
 function App() {
@@ -8,12 +9,7 @@ function App() {
             <Login />
             <div className="text-xl	font-bold py-8"># Verify from PhoneNum</div>
 
-            <div className="text-xl	font-bold py-8"># SocialLogin</div>
-            <div className="flex flex-col">
-                <button> 구글로 로그인하기 </button>
-                <button> 페이스북 로그인하기 </button>
-                <button> 깃허브로 로그인하기 </button>
-            </div>
+            <GoogleLogin />
         </div>
     );
 }
